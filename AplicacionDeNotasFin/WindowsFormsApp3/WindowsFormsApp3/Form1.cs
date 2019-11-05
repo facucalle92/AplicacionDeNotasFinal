@@ -391,6 +391,41 @@ namespace WindowsFormsApp3
             }
             return nohayletras;
         }
+        
+                private void AcomodaMateria()
+        {
+            string aux4; //string para asignar un valor de Materias
+            string aux2; //string para asignar un valor de Nombres
+            string aux1; //string para asignar un valor de Apellidos
+            int aux3; //int para asignar un valor de Notas
+            for (int a = 1; a < contador; a++)
+                for (int b = contador - 1; b >= a; b--)
+                {
+                    aux4 = alumnos[b - 1].Materias;
+                    int aux = aux4.CompareTo(alumnos[b].Materias); //Asignamos el valor de la comparacion 1, 0, -1 segun sea mayor igual o menor
+                    if (aux > 0)
+                    {
+                        aux4 = alumnos[b - 1].Materias; //Guardamos en aux4 la Materia
+                        aux1 = alumnos[b - 1].Apellido; //Guardamos en aux1 el Apellido
+                        aux2 = alumnos[b - 1].Nombre; //Guardamos en aux2 el Nombre
+                        aux3 = alumnos[b - 1].Nota; //Guardamos en el aux3 la Nota
+                        alumnos[b - 1].Materias = alumnos[b].Materias; //Movemos de lugar las Materias
+                        alumnos[b - 1].Nota = alumnos[b].Nota; //Movemos de lugar las Notas
+                        alumnos[b - 1].Apellido = alumnos[b].Apellido; //Movemos de lugar los apellidos
+                        alumnos[b - 1].Nombre = alumnos[b].Nombre; //Movemos de lugar los nombres
+                        alumnos[b].Materias = aux4; //Asignamos al alumno un nuevo valor de Materia
+                        alumnos[b].Nota = aux3; //Asignamos al alumno un nuevo valor de Nota
+                        alumnos[b].Apellido = aux1; //Asignamos al alumno un nuevo valor de Apellido
+                        alumnos[b].Nombre = aux2; //Asignamos al alumno un nuevo valor de Nombre
+                    }
+                }
+            dataGridAcomoda.Rows.Clear(); //Limpia la DataGridAcomodados
+            for (int i = 0; i < contador; i++)
+            {
+                //Agrega los alumnos acomodados al DataGridAcomodados
+                dataGridAcomoda.Rows.Add(alumnos[i].Nombre, alumnos[i].Apellido, alumnos[i].Materias, alumnos[i].Nota);
+            }
+        }
 
         private void AcomodaNombre()
         {
@@ -403,40 +438,6 @@ namespace WindowsFormsApp3
                 {
                     aux2 = alumnos[b - 1].Nombre;
                     int aux = aux2.CompareTo(alumnos[b].Nombre);
-                    if (aux > 0)
-                    {
-                        aux4 = alumnos[b - 1].Materias;
-                        aux1 = alumnos[b - 1].Apellido;
-                        aux2 = alumnos[b - 1].Nombre;
-                        aux3 = alumnos[b - 1].Nota;
-                        alumnos[b - 1].Materias = alumnos[b].Materias;
-                        alumnos[b - 1].Nota = alumnos[b].Nota;
-                        alumnos[b - 1].Apellido = alumnos[b].Apellido;
-                        alumnos[b - 1].Nombre = alumnos[b].Nombre;
-                        alumnos[b].Materias = aux4;
-                        alumnos[b].Nota = aux3;
-                        alumnos[b].Apellido = aux1;
-                        alumnos[b].Nombre = aux2;
-                    }
-                }
-            dataGridAcomoda.Rows.Clear();
-            for (int i = 0; i < contador; i++)
-            {
-                dataGridAcomoda.Rows.Add(alumnos[i].Nombre, alumnos[i].Apellido, alumnos[i].Materias, alumnos[i].Nota);
-            }
-        }
-
-        private void AcomodaMateria()
-        {
-            string aux4;
-            string aux2;
-            string aux1;
-            int aux3;
-            for (int a = 1; a < contador; a++)
-                for (int b = contador - 1; b >= a; b--)
-                {
-                    aux4 = alumnos[b - 1].Materias;
-                    int aux = aux4.CompareTo(alumnos[b].Materias);
                     if (aux > 0)
                     {
                         aux4 = alumnos[b - 1].Materias;
